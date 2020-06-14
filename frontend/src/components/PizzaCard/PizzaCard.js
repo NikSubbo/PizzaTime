@@ -1,49 +1,71 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import { Card, CardActions, CardContent, CardMedia, IconButton, Typography, Divider } from '@material-ui/core';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
   },
+  description: {
+    height: 70,
+  },
+  actions: {
+    display: 'flex',
+    justifyContent: 'space-around'
+  },
+  quantity: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  pizzaImg: {
+    transition: 'all 1s ease-out',
+    '&:hover': {
+      transform: 'scale(1.1)',
+    }
+  },
 });
 
 export default function PizzaCard(props) {
-  console.log(props)
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Tasty pizza"
-          height="140"
-          image={props.pizza.picture}
-          title={props.pizza.title}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.pizza.title}
+      <CardMedia
+        component="img"
+        alt="Tasty pizza"
+        height="260"
+        image={props.pizza.picture}
+        title={props.pizza.title}
+        className={classes.pizzaImg}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="h2">
+          {props.pizza.title}
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p" className={classes.description}>
+          {props.pizza.description}
+        </Typography>
+      </CardContent>
+      <Divider variant="middle" />
+      <CardActions className={classes.actions}>
+        <div>
+          <Typography>
+            {props.pizza.price} €
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {props.pizza.description}
+        </div>
+        <div className={classes.quantity}>
+          <IconButton color="inherit" onClick={() => props.add(props.pizza._id)}>
+            <AddCircleIcon />
+          </IconButton>
+          <Typography>
+            {props.pizza.quantity ? props.pizza.quantity : 0}
           </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Typography>
-          Price
-      </Typography>
-        <Button size="small" color="primary">
-          Buy
-        </Button>
+          <IconButton color="inherit" onClick={() => props.remove(props.pizza._id)}>
+            <RemoveCircleIcon />
+          </IconButton>
+        </div>
       </CardActions>
     </Card>
   );

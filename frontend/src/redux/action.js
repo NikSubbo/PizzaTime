@@ -1,1 +1,4 @@
 export const ADD_PIZZA = 'ADD_PIZZA';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+export const TOTAL_REMOVE_FROM_CART = 'TOTAL_REMOVE_FROM_CART';

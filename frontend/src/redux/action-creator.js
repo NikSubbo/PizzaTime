@@ -1,4 +1,4 @@
-import { ADD_PIZZA } from './action'
+import { ADD_PIZZA, ADD_TO_CART, REMOVE_FROM_CART, TOTAL_REMOVE_FROM_CART } from './action'
 
 export const addPizzaAC = (pizza) => ({
   type: ADD_PIZZA,
@@ -19,3 +19,18 @@ export const fetchPizzasAC = () => {
     }
   };
 };
+
+export const addToCartAC = (id) => ({
+  type: ADD_TO_CART,
+  id
+})
+
+export const removeFromCartAC = (id) => ({
+  type: REMOVE_FROM_CART,
+  id
+})
+
+export const totalRemoveFromCartAC = (id) => ({
+  type: TOTAL_REMOVE_FROM_CART,
+  id
+})

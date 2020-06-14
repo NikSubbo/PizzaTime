@@ -1,16 +1,27 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
+import { AppBar, Toolbar, IconButton } from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import pizzaTimeImg from '../../images/pizzatime.jpg'
 
 const useStyles = makeStyles((theme) => ({
-  title: {
+  toolbar: {
+    backgroundColor: '#FFC482'
+  },
+  logoDiv: {
     flexGrow: 1,
+    position: 'relative',
+  },
+  logo: {
+    maxWidth: '100px',
+    maxHeight: '64px',
+    position: 'absolute',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
   },
   titleLink: {
     flexGrow: 1,
@@ -36,15 +47,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NavBar() {
+function NavBar(props) {
   const classes = useStyles();
   return (
     <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" className={classes.title}>
-          <Link to="/" className={classes.titleLink}>PizzaTime </Link>
-        </Typography>
-
+      <Toolbar className={classes.toolbar}>
+        <div className={classes.logoDiv}>
+          <Link to="/" className={classes.titleLink}>
+            <img alt="pizzaTimePic" className={classes.logo} src={pizzaTimeImg} />
+          </Link>
+        </div>
         <Link to="/login" className={classes.loginLink}>
           <IconButton className={classes.loginBtn} color="inherit">
             <AccountCircle />
@@ -53,7 +65,7 @@ export default function NavBar() {
 
         <Link to="/cart" className={classes.cartLink}>
           <IconButton edge="end" className={classes.shoppingCartBtn} color="inherit">
-            <ShoppingCartIcon />
+            {props.addedItems.length ? <AddShoppingCartIcon /> : <ShoppingCartIcon />}
           </IconButton>
         </Link>
       </Toolbar>
@@ -61,3 +73,6 @@ export default function NavBar() {
   );
 }
 
+const mapStateToProps = (state) => state;
+
+export default connect(mapStateToProps)(NavBar);
