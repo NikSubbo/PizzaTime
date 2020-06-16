@@ -1,4 +1,4 @@
-const dbConnection = require("../middleware/db-connect");
+const dbConnection = require("./db-connect");
 
 const Pizza = require('../models/pizzas')
 

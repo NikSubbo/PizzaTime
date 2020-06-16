@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const indexRouter = require('./routes/index');
-const dbConnection = require("./middleware/db-connect");
+const dbConnection = require("./db/db-connect");
 const morgan = require("morgan");
 const cors = require('cors')
 
