@@ -3,10 +3,41 @@ import { connect } from 'react-redux';
 import { addToCartAC, removeFromCartAC, totalRemoveFromCartAC } from '../../redux/action-creator';
 import CartItem from "../../components/CartItem/CartItem";
 import NavBar from "../../components/NavBar/NavBar";
-// import { Grid } from '@material-ui/core';
+import { Paper, Typography, Grid, Container } from '@material-ui/core';
+import SubmitForm from '../../components/SubmitForm/SubmitForm'
+import { makeStyles } from '@material-ui/core/styles';
+import Total from '../../components/Total/Total'
+import pizzaMan from '../../images/pizzaman2.jpg'
+const uniqid = require('uniqid');
 
+
+const useStyles = makeStyles((theme) => ({
+  emptyDiv: {
+    marginTop: theme.spacing(3),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  emptyHeader: {
+    marginTop: theme.spacing(2),
+  },
+  emptyText: {
+    marginTop: theme.spacing(1),
+  },
+  img: {
+    width: 150,
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2)
+  },
+  orderHeader: {
+    marginTop: theme.spacing(3),
+    display: 'flex',
+    justifyContent: 'center',
+  }
+}));
 
 function Cart(props) {
+  const classes = useStyles();
 
   const handleClickAdd = (id) => {
     props.addToCart(id);
@@ -23,23 +54,46 @@ function Cart(props) {
   return (
     <Fragment>
       <NavBar />
+      <Container>
       {props.addedItems.length ?
-        props.addedItems.map((pizza) => {
-          return (
-            // <Grid key={pizza._id} item xs={12} sm={6} md={4} lg={4} xl={4}>
-              <CartItem 
-              key={pizza._id} 
-              pizza={pizza} 
-              add={handleClickAdd} 
-              remove={handleClickRemove}
-              totalRemove={handleClickTotalRemove}/>
-            // </Grid>
-          )
-        })
+        <Container>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <Typography variant="h4" className={classes.orderHeader}>
+                Your order
+              </Typography>
+              {props.addedItems.map((pizza) => {
+                return (
+                  <CartItem
+                    key={uniqid()}
+                    pizza={pizza}
+                    add={handleClickAdd}
+                    remove={handleClickRemove}
+                    totalRemove={handleClickTotalRemove} />
+                )
+              })}
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Total />
+              <SubmitForm />
+            </Grid>
+          </Grid>
+        </Container>
         :
-        <p>The Cart is empty</p>
+        <Container>
+          <Paper className={classes.emptyDiv}>
+            <Typography variant="h4" className={classes.emptyHeader}>
+              Your order
+        </Typography>
+            <Typography variant="body2" color="textSecondary" className={classes.emptyText}>
+              The Cart is empty
+        </Typography>
+            <img alt="pizzaMan" src={pizzaMan} className={classes.img} />
+          </Paper>
+        </Container>
       }
-    </Fragment>
+      </Container>
+    </Fragment >
   );
 }
 

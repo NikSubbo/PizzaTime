@@ -7,6 +7,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginTop: theme.spacing(2),
   },
   paper: {
     padding: theme.spacing(2),
@@ -43,7 +44,7 @@ export default function CartItem(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} >
           <Grid item>
             <img className={classes.img} alt="pizzaPic" src={props.pizza.picture} />
           </Grid>

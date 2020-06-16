@@ -35,7 +35,7 @@ const reducer = (state = initState, action) => {
     case REMOVE_FROM_CART:
       let itemToDecrease = state.pizzas.find(pizza => pizza._id === action.id)
       let leftItems = state.addedItems.filter(pizza => action.id !== pizza._id)
-      if (itemToDecrease.quantity !== 1) {
+      if (itemToDecrease.quantity > 1) {
         itemToDecrease.quantity -= 1
         let newTotal = state.total - itemToDecrease.price
         return {
@@ -44,7 +44,7 @@ const reducer = (state = initState, action) => {
         }
       }
       else {
-        itemToDecrease.quantity -= 1
+        itemToDecrease.quantity = 0
         let newTotal = state.total - itemToDecrease.price
         return {
           ...state,

@@ -62,9 +62,16 @@ export default function PizzaCard(props) {
           <Typography>
             {props.pizza.quantity ? props.pizza.quantity : 0}
           </Typography>
-          <IconButton color="inherit" onClick={() => props.remove(props.pizza._id)}>
-            <RemoveCircleIcon />
-          </IconButton>
+          {
+            props.pizza.quantity ?
+              <IconButton color="inherit" onClick={() => props.remove(props.pizza._id)}>
+                <RemoveCircleIcon />
+              </IconButton>
+              :
+              <IconButton color="inherit" disabled>
+                <RemoveCircleIcon />
+              </IconButton>
+          }
         </div>
       </CardActions>
     </Card>

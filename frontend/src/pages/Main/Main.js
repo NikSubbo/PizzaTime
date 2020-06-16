@@ -9,9 +9,6 @@ import { Grid, Container } from '@material-ui/core';
 
 function Main(props) {
   const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
     container: {
       marginTop: theme.spacing(3),
     },
