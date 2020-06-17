@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
-mongoose.connect(process.env.DB_CONN, {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
