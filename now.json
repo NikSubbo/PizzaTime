@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "client/build/*",
+      "src": "client/build/index.html",
       "use": "@now/static"
     },
     {
@@ -21,8 +21,8 @@
       "dest": "/app.js"
     },
     {
-      "src": "/static/(.*)",
-      "dest": "client/build/$1"
+      "src": "/(.*)",
+      "dest": "client/build/index.html"
     }
   ]
 }
