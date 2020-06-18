@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 const submitHandler = async (e) => {
   e.preventDefault();
-  window.location.href = 'http://localhost:3000/final';
+  window.location.href = '/final';
 }
 
 export default function SubmitForm() {
