@@ -4,7 +4,9 @@
     {
       "src": "package.json",
       "use": "@now/static-build",
-      "config": { "distDir": "client/build" }
+      "config": {
+        "distDir": "client/build"
+      }
     },
     {
       "src": "app.js",
@@ -20,6 +22,10 @@
       },
       "src": "/(.*)",
       "dest": "/app.js"
+    },
+    {
+      "src": "/static/(.*)",
+      "dest": "/dist/$1"
     }
   ]
 }
