@@ -1,5 +1,10 @@
 {
+  "version": 2,
   "builds": [
+    {
+      "src": "client/build/*",
+      "use": "@now/static"
+    },
     {
       "src": "app.js",
       "use": "@now/node-server"
@@ -12,8 +17,12 @@
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
         "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
       },
-      "src": "/.*",
+      "src": "/(.*)",
       "dest": "/app.js"
+    },
+    {
+      "src": "/static/(.*)",
+      "dest": "client/build/$1"
     }
   ]
 }
