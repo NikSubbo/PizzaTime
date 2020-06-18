@@ -19,7 +19,7 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/', indexRouter);
+app.use('/api', indexRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
