@@ -7,14 +7,7 @@ const cors = require('cors')
 const path = require('path')
 require('dotenv').config();
 
-app.use(
-  cors({
-    origin: '*',
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true
-  })
-);
-
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
