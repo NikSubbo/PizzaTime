@@ -2,12 +2,12 @@
   "version": 2,
   "builds": [
     {
-      "src": "client/build/index.html",
-      "use": "@now/static"
+      "src": "package.json",
+      "use": "@now/static-build"
     },
     {
       "src": "app.js",
-      "use": "@now/node-server"
+      "use": "@now/node"
     }
   ],
   "routes": [
@@ -19,10 +19,6 @@
       },
       "src": "/(.*)",
       "dest": "/app.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "client/build/index.html"
     }
   ]
 }
