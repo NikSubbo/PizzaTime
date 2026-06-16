@@ -4,11 +4,7 @@ require("dotenv").config({ path: path.join(__dirname, "..", ".env") });
 const seed = require("./seed");
 
 mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/pizzatime", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  })
+  .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/pizzatime")
   .then(async () => {
     console.log("Connected to the Database");
     await seed();
