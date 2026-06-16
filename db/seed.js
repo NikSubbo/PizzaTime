@@ -1,6 +1,6 @@
 const dbConnection = require("./db-connect");
 
-const Pizza = require('../models/pizzas')
+const Pizza = require('./models/pizzas')
 
 const titles = [
   'Pepperoni',

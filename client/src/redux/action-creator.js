@@ -1,17 +1,24 @@
-import { ADD_PIZZA, ADD_TO_CART, REMOVE_FROM_CART, TOTAL_REMOVE_FROM_CART } from './action'
+import {
+  ADD_PIZZA,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  TOTAL_REMOVE_FROM_CART,
+} from "./action";
+
+const baseURL = process.env.REACT_APP_BACKEND_URL || "/api";
 
 export const addPizzaAC = (pizza) => ({
   type: ADD_PIZZA,
-  newPizza: { ...pizza }
+  newPizza: { ...pizza },
 });
 
 export const fetchPizzasAC = () => {
   return async (dispatch) => {
-    const response = await fetch('/api', {
-      method: 'GET',
+    const response = await fetch(baseURL, {
+      method: "GET",
       headers: {
-        'Content-type': 'application/json'
-      }
+        "Content-type": "application/json",
+      },
     });
     const result = await response.json();
     for (let i = 0; i < result.length; i++) {
@@ -22,15 +29,15 @@ export const fetchPizzasAC = () => {
 
 export const addToCartAC = (id) => ({
   type: ADD_TO_CART,
-  id
-})
+  id,
+});
 
 export const removeFromCartAC = (id) => ({
   type: REMOVE_FROM_CART,
-  id
-})
+  id,
+});
 
 export const totalRemoveFromCartAC = (id) => ({
   type: TOTAL_REMOVE_FROM_CART,
-  id
-})
+  id,
+});
